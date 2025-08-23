@@ -3,6 +3,8 @@
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
+import Image from 'next/image';
+import muttonCurryImage from './images/mutton-curry.jpg';
 import { Star, Clock, Users } from 'lucide-react';
 
 export default function FeaturedDish() {
@@ -25,8 +27,15 @@ export default function FeaturedDish() {
           {/* Image */}
           <div className="relative">
             <div className="bg-gradient-to-br from-red-100 to-amber-100 rounded-2xl p-8 shadow-2xl">
-              <div className="aspect-square bg-gradient-to-br from-red-200 to-amber-200 rounded-xl flex items-center justify-center text-6xl shadow-inner">
-                🍛
+              <div className="relative aspect-square bg-gradient-to-br from-red-200 to-amber-200 rounded-xl flex items-center justify-center text-6xl shadow-inner overflow-hidden">
+                <Image
+                  src={muttonCurryImage}
+                  alt="Mutton Curry"
+                  fill
+                  className="rounded-xl object-cover"
+                  placeholder="blur"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
               
               <div className="absolute -top-4 -right-4 bg-amber-500 text-red-900 rounded-full px-4 py-2 font-bold shadow-lg">
