@@ -1,11 +1,23 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import OrderTracker from '@/components/track/OrderTracker';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: 'Track Your Order - Jalalabad Mutton',
   description: 'Track your Jalalabad Mutton order in real-time. Get updates on your authentic Punjabi mutton dish delivery.',
 };
+
+// A simple loading skeleton for the tracker
+function OrderTrackerSkeleton() {
+  return (
+    <div className="space-y-6 animate-pulse">
+      <div className="bg-gray-200 h-24 rounded-lg"></div>
+      <div className="bg-gray-200 h-64 rounded-lg"></div>
+      <div className="bg-gray-200 h-80 rounded-lg"></div>
+    </div>
+  );
+}
 
 export default function TrackPage() {
   return (
@@ -21,7 +33,9 @@ export default function TrackPage() {
               Stay updated with your order status in real-time
             </p>
           </div>
-          <OrderTracker />
+          <Suspense fallback={<OrderTrackerSkeleton />}>
+            <OrderTracker />
+          </Suspense>
         </div>
       </main>
       <Footer />

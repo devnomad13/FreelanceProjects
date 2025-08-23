@@ -1,11 +1,27 @@
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import OrderForm from '@/components/order/OrderForm';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: 'Order Online - Jalalabad Mutton',
   description: 'Order authentic Punjabi mutton dishes online from Jalalabad Mutton. Fast delivery, fresh ingredients, traditional recipes.',
 };
+
+// A simple loading skeleton for the form
+function OrderFormSkeleton() {
+  return (
+    <div className="grid lg:grid-cols-3 gap-8 animate-pulse">
+      {/* Form Card Skeleton */}
+      <div className="lg:col-span-2 bg-gray-200 h-[600px] rounded-lg"></div>
+      {/* Summary & Info Cards Skeleton */}
+      <div className="space-y-6">
+        <div className="bg-gray-200 h-48 rounded-lg"></div>
+        <div className="bg-gray-200 h-64 rounded-lg"></div>
+      </div>
+    </div>
+  );
+}
 
 export default function OrderPage() {
   return (
@@ -21,7 +37,9 @@ export default function OrderPage() {
               Place your order and enjoy authentic Punjabi mutton dishes delivered to your doorstep
             </p>
           </div>
-          <OrderForm />
+          <Suspense fallback={<OrderFormSkeleton />}>
+            <OrderForm />
+          </Suspense>
         </div>
       </main>
       <Footer />
